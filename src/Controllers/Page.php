@@ -29,7 +29,7 @@ class Page
             return $this->response->setContent('404 - Page not found');
         }
 
-        $html = $this->renderer->render('Page.html', $data);
+        $html = $this->renderer->render('Page', $data);
 
         $this->response->setContent($html);
     }
