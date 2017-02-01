@@ -40,4 +40,13 @@ $injector->define(Twig_Environment::class, [
 //     ],
 // ]);
 
+/**
+ * Page reader
+ */
+$injector->alias(App\Page\PageReader::class, App\Page\FilePageReader::class);
+$injector->define(App\Page\FilePageReader::class, [
+    ':pageFolder' => __DIR__ . '/../pages',
+]);
+$injector->share(App\Page\FilePageReader::class);
+
 return $injector;

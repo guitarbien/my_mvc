@@ -24,6 +24,9 @@ else {
 
 $whoops->register();
 
+/**
+ * Dependency
+ */
 $injector = include('Dependencies.php');
 
 $request  = $injector->make(\Http\HttpRequest::class);
