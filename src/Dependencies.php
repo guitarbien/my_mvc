@@ -24,13 +24,20 @@ $injector->share(Http\HttpResponse::class);
 /**
  * Template
  */
-$injector->alias(App\Template\Renderer::class, App\Template\MustacheRenderer::class);
-$injector->define('Mustache_Engine', [
-    ':options' => [
-        'loader' => new Mustache_Loader_FilesystemLoader(dirname(__DIR__) . '/templates', [
-            'extension' => '.html',
-        ]),
-    ],
+// Twig
+$injector->alias(App\Template\Renderer::class, App\Template\TwigRenderer::class);
+$injector->define(Twig_Environment::class, [
+    ':loader' => new Twig_Loader_Filesystem(dirname(__DIR__) . '/templates'),
 ]);
+
+// // Mustache
+// $injector->alias(App\Template\Renderer::class, App\Template\MustacheRenderer::class);
+// $injector->define(Mustache_Engine::class, [
+//     ':options' => [
+//         'loader' => new Mustache_Loader_FilesystemLoader(dirname(__DIR__) . '/templates', [
+//             'extension' => '.html',
+//         ]),
+//     ],
+// ]);
 
 return $injector;
