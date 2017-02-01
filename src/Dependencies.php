@@ -55,4 +55,15 @@ $injector->define(App\Page\FilePageReader::class, [
 ]);
 $injector->share(App\Page\FilePageReader::class);
 
+/**
+ * FrontendRenderer
+ */
+$injector->alias(App\Template\FrontendRenderer::class, App\Template\FrontendTwigRenderer::class);
+
+/**
+ * Menu
+ */
+$injector->alias(App\Menu\MenuReader::class, App\Menu\ArrayMenuReader::class);
+$injector->share(App\Menu\ArrayMenuReader::class);
+
 return $injector;
