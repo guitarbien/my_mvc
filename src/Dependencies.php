@@ -26,9 +26,15 @@ $injector->share(Http\HttpResponse::class);
  */
 // Twig
 $injector->alias(App\Template\Renderer::class, App\Template\TwigRenderer::class);
-$injector->define(Twig_Environment::class, [
-    ':loader' => new Twig_Loader_Filesystem(dirname(__DIR__) . '/templates'),
-]);
+// $injector->define(Twig_Environment::class, [
+//     ':loader' => new Twig_Loader_Filesystem(dirname(__DIR__) . '/templates'),
+// ]);
+$injector->delegate(Twig_Environment::class, function () {
+    $loader = new Twig_Loader_Filesystem(dirname(__DIR__) . '/templates');
+    $twig   = new Twig_Environment($loader);
+    return $twig;
+});
+
 
 // // Mustache
 // $injector->alias(App\Template\Renderer::class, App\Template\MustacheRenderer::class);
